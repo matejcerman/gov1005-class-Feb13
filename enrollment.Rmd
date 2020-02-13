@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = F)
 library(tidyverse)
 library(readxl)
 library(janitor)
+library(gt)
 ```
 
 ```{r}
@@ -26,7 +27,13 @@ top5 <- enrollment %>%
   filter(course_department == "Government") %>%
   arrange(desc(total)) %>%
   slice(1:5) %>%
-  select(course_name,course_title,total)
+  select(course_title,course_name,instructor_full_name,total) %>%
+  gt() %>%
+  tab_header(
+    title = "5 Government classes with the largest erollment"
+  ) %>%
+  fmt_number(columns = total) %>%
+  tab_footnote(footnote = "Source: Harvard Registrar")
 top5
 ```
 
