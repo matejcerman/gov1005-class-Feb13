@@ -31,9 +31,7 @@ top5 <- enrollment %>%
   gt() %>%
   tab_header(
     title = "5 Government classes with the largest erollment"
-  ) %>%
-  fmt_number(columns = total) %>%
-  tab_footnote(footnote = "Source: Harvard Registrar")
+  )
 top5
 ```
 
