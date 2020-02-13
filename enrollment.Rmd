@@ -1,0 +1,32 @@
+---
+title: "enrollment"
+author: "Matej Cerman"
+date: "13 2 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+```{r}
+enrollment <- read_excel("class_enrollment_summary_by_term_2.13.20.xlsx", skip = 3)
+```
+
+```{r}
+enrollment <- enrollment %>%
+  clean_names()
+```
+
+```{r}
+top5 <- enrollment %>%
+  filter(course_department == "Government") %>%
+  arrange(desc(total)) %>%
+  slice(1:5) %>%
+  select(course_name,course_title,total)
+top5
+```
+
